@@ -22,7 +22,7 @@ public final class DriverManager {
     private DriverManager() {
         //System.setProperty(KEY, PATH);
         //driver = new ChromeDriver();
-        driver = DriverFactory.getDriverManager(DriverType.FIREFOX);
+        driver = DriverFactory.getDriverManager(DriverType.CHROME);
         backPreviousWait();
     }
 
