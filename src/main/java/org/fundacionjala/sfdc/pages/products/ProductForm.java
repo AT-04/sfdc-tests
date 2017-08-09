@@ -3,7 +3,6 @@ package org.fundacionjala.sfdc.pages.products;
 import org.fundacionjala.sfdc.CommonActions;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
 import org.fundacionjala.sfdc.pages.base.FormBase;
-import org.fundacionjala.sfdc.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,15 +23,22 @@ public class ProductForm extends FormBase {
     @FindBy(xpath = "//span[contains(text(), 'Product Description')]/parent::label/following-sibling::textarea")
     private WebElement productDescriptionTextArea;
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DetailBase createNewItem(String name) {
+    public DetailBase newItem(String name) {
         setProductNameInputText(name);
         clickSaveButton();
         return new ProductDetail();
     }
 
-    public void setProductNameInputText(String productName){
+    /**
+     * Set the Product Name.
+     *
+     * @param productName String.
+     */
+    public void setProductNameInputText(String productName) {
         CommonActions.setInputField(productNameInputText, productName);
     }
 }

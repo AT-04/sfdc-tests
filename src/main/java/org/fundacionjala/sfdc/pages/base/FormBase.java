@@ -18,16 +18,33 @@ public abstract class FormBase extends BasePage {
     @FindBy(css = ".modal-footer button[title='Cancel']")
     protected WebElement cancelButton;
 
-    public void clickSaveButton(){
+    /**
+     * Clicks the Save Button of the Form.
+     */
+    public void clickSaveButton() {
         CommonActions.clickElement(saveButton);
     }
 
-    public void clickSaveAndNewButton(){
+    /**
+     * Clicks the Save and New Button of the Form.
+     */
+    public void clickSaveAndNewButton() {
         CommonActions.clickElement(saveAndNewButton);
     }
-    public void clickCancelButton(){
+
+    /**
+     * Clicks the Cancel Button of the Form.
+     */
+    public void clickCancelButton() {
         CommonActions.clickElement(cancelButton);
     }
 
-    public abstract DetailBase createNewItem(String name);
+    /**
+     * Creates or Updates the Item.
+     *
+     * @param name String.
+     * @return DetailBase.
+     */
+    //Try to implement with Builder Pattern
+    public abstract DetailBase newItem(String name);
 }

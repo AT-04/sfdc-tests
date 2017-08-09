@@ -10,12 +10,18 @@ import org.fundacionjala.sfdc.pages.base.HomeBase;
  */
 public class ProductHome extends HomeBase {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FormBase clickNewButton() {
         CommonActions.clickElement(newButton);
         return new ProductForm();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FormBase clickEditButton(String name) {
         clickDropDownListLink(name);
@@ -23,10 +29,13 @@ public class ProductHome extends HomeBase {
         return new ProductForm();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     //Need review
     @Override
     public DetailBase clickDisplayedItem(String name) {
-        getDisplayedItem(name);
+        isDisplayedItem(name);
         CommonActions.clickElement(displayedItem);
         return new ProductDetail();
     }

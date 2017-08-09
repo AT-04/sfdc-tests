@@ -1,6 +1,7 @@
 package org.fundacionjala.sfdc.pages;
 
 import org.fundacionjala.sfdc.CommonActions;
+import org.fundacionjala.sfdc.driver.DriverManager;
 import org.fundacionjala.sfdc.pages.base.BasePage;
 import org.fundacionjala.sfdc.pages.login.Login;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,8 @@ public class Home extends BasePage {
     private WebElement viewProfileIcon;
 
     @FindBy(css = ".oneUserProfileCard .logout")
+//    @FindBy(css = ".profile-link-label.logout.uiOutputURL")
+//    @FindBy
     private WebElement logOutButton;
 
     @FindBy(css = "h1.profile-card-name > a.profile-link-label")
@@ -80,8 +83,10 @@ public class Home extends BasePage {
      * @return Login pageObject.
      */
     public Login clickLinkLogOut() {
-        clickProfileIcon();
-        CommonActions.clickElement(logOutButton);
+//        clickProfileIcon();
+//        CommonActions.clickElement(logOutButton);
+        DriverManager.getInstance().getWait().until(ExpectedConditions.urlContains("Product2"));
+        DriverManager.getInstance().getDriver().get("https://na59.salesforce.com/secur/logout.jsp");
         return new Login();
     }
 
@@ -104,10 +109,17 @@ public class Home extends BasePage {
         return new Home();
     }
 
+    /**
+     * Clicks the App Launcher Button.
+     */
     public void clickAppLauncherButton() {
         CommonActions.clickElement(appLauncherButton);
     }
 
+    /**
+     * Loads the App Launcher by clicking on its button.
+     * @return AppLauncher.
+     */
     public AppLauncher clickAppLauncher() {
         clickAppLauncherButton();
         return new AppLauncher();
