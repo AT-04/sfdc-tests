@@ -10,8 +10,6 @@ import org.openqa.selenium.support.FindBy;
  */
 public abstract class DetailBase extends BasePage {
 
-    protected WebElement createdItem;
-
     @FindBy(css = "a[title='Edit']")
     protected WebElement editButton;
 
@@ -22,24 +20,15 @@ public abstract class DetailBase extends BasePage {
     protected WebElement confirmDeleteButton;
 
     /**
-     * Find the item Created by Name.
-     *
-     * @param name String.
-     */
-    public void getCreatedItem(String name) {
-        String cssSelector = String.format("h1[title='%s']", name);
-        createdItem = driver.findElement(By.cssSelector(cssSelector));
-    }
-
-    /**
      * Returns the text content of the Item.
      *
      * @param name String.
      * @return String.
      */
     public String getItemName(String name) {
-        getCreatedItem(name);
-        return CommonActions.getTextElement(createdItem);
+        String cssSelector = String.format("h1[title='%s']", name);
+        WebElement createdItem = driver.findElement(By.cssSelector(cssSelector));
+        return createdItem.getText();
     }
 
     /**
