@@ -1,7 +1,6 @@
 package org.fundacionjala.sfdc.pages;
 
 import org.fundacionjala.sfdc.CommonActions;
-import org.fundacionjala.sfdc.driver.DriverManager;
 import org.fundacionjala.sfdc.pages.base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;

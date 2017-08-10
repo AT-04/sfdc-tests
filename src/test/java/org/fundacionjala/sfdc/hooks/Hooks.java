@@ -47,6 +47,6 @@ public class Hooks {
      */
     @After(order = 10)
     public void logoutFromSalesForce() {
-        helper.getHomePage().clickLinkLogOut();
+        helper.getHomePage().clickLogOutLink();
     }
 }
