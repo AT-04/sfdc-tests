@@ -3,7 +3,6 @@ package org.fundacionjala.sfdc.pages;
 import org.fundacionjala.sfdc.CommonActions;
 import org.fundacionjala.sfdc.driver.DriverManager;
 import org.fundacionjala.sfdc.pages.base.BasePage;
-import org.fundacionjala.sfdc.pages.login.Login;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -71,14 +70,10 @@ public class Home extends BasePage {
 
     /**
      * Method that makes click on logout link.
-     * @return Login pageObject.
      */
-    public Login clickLinkLogOut() {
-//        DriverManager.getInstance().getWait().until(ExpectedConditions.urlContains("Product2"));
-//        clickProfileIcon();
-//        CommonActions.clickElement(logOutButton);
-        DriverManager.getInstance().getDriver().get("https://na59.salesforce.com/secur/logout.jsp");
-        return new Login();
+    public void clickLogOutLink() {
+        clickProfileIcon();
+        CommonActions.clickElement(logOutButton);
     }
 
     /**
