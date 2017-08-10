@@ -1,4 +1,3 @@
-@create
 Feature: Create Product
 
 #  @deleteProduct @login

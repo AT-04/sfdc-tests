@@ -1,4 +1,3 @@
-@created
 Feature: Edit Product
 
   Background: Create Product
