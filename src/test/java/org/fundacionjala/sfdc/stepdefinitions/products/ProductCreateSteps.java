@@ -6,9 +6,13 @@ import cucumber.api.java.en.When;
 import org.fundacionjala.sfdc.entities.ProductHelper;
 import org.fundacionjala.sfdc.pages.products.ProductDetail;
 import org.fundacionjala.sfdc.pages.products.ProductForm;
+import org.fundacionjala.sfdc.pages.products.ProductFormField;
 import org.fundacionjala.sfdc.pages.products.ProductHome;
 
+import java.util.Map;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by abelb on 8/9/2017.
@@ -54,8 +58,22 @@ public class ProductCreateSteps {
      * @param productName String.
      */
     @Then("^On Products Home Page \"([^\"]*)\" should be displayed$")
-    public void onProductsHomePageShouldBeDisplayed(String productName) {
+    public void onProductsHomePageShouldBeDisplayed(String productName) throws InterruptedException {
         assertEquals(productName, helper.getProductDetail().getItemName(productName));
-        helper.setProductHome((ProductHome) helper.getProductDetail().deleteItem());
+        Thread.sleep(1000);
+        helper.getHomePage().clickAppLauncher();
+        helper.setProductHome(helper.getAppLauncher().clickProductsTextLink());
+        assertTrue(helper.getProductHome().isDisplayedItem(productName));
+    }
+
+    /**
+     * In this Step a new Product is created with values required and optional.
+     *
+     * @param formMapData Map.
+     */
+    @When("^I create a new Product with$")
+    public void iCreateANewProductWith(Map<ProductFormField, String> formMapData) {
+        helper.setProductForm((ProductForm) helper.getProductHome().clickNewButton());
+        helper.setProductDetail((ProductDetail) helper.getProductForm().newItemFromMap(formMapData));
     }
 }

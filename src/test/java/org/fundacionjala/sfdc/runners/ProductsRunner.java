@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeTest;
 @CucumberOptions(
         plugin = {"pretty"},
         features = {"src/test/resources/features/products"},
-        glue = {"org.fundacionjala.sfdc"})
+        glue = {"org.fundacionjala.sfdc"}, tags = {"@edit"})
 public class ProductsRunner extends AbstractTestNGCucumberTests {
 
     /**

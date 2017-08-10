@@ -24,14 +24,6 @@ public class AppLauncher extends BasePage {
 //    @FindBy(css = "one-app-launcher-header")
     private WebElement openAllItemsButton;
 
-    /*
-     * For future implementation maybe by internationalization.
-    private void getProductsTextLink() {
-        String xpathSelector = String.format("//span[contains(@class, 'label-ctr')]
-        /child::span[text()='%s']", "Products");
-        productsTextLink = driver.findElement(By.xpath(xpathSelector));
-    }*/
-
     /**
      * Clicks the Product Text Link.
      * @return ProductHome.
@@ -39,7 +31,6 @@ public class AppLauncher extends BasePage {
     public ProductHome clickProductsTextLink() {
         waitModal();
         CommonActions.clickElement(openAllAppsButton);
-        //getProductsTextLink();
         CommonActions.clickElement(productsTextLink);
         return new ProductHome();
     }

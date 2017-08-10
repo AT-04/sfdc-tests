@@ -4,6 +4,7 @@ Feature: Delete a Product
     Given I am on Products Home Page
     When I create a new Product "AutomatedDemoAT04"
 
+  @login
   Scenario: Delete the Product
     When I Delete the Product
     Then On Products Home Page "AutomatedDemoAT04" should not be displayed

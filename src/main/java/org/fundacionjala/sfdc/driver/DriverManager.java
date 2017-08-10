@@ -10,8 +10,6 @@ import java.util.concurrent.TimeUnit;
  */
 public final class DriverManager {
     private static final String BASE_URL = "https://salesforce.com";
-    //private static final String KEY = "webdriver.chrome.driver";
-    //private static final String PATH = "drivers/chromedriver.exe";
     private static DriverManager instance;
     private WebDriver driver;
     private WebDriverWait wait;
@@ -20,8 +18,6 @@ public final class DriverManager {
      * Constructor.
      */
     private DriverManager() {
-        //System.setProperty(KEY, PATH);
-        //driver = new ChromeDriver();
         driver = DriverFactory.getDriverManager(DriverType.CHROME);
         backPreviousWait();
     }

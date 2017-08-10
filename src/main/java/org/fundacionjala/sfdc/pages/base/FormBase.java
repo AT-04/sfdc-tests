@@ -1,8 +1,11 @@
 package org.fundacionjala.sfdc.pages.base;
 
 import org.fundacionjala.sfdc.CommonActions;
+import org.fundacionjala.sfdc.pages.products.ProductFormField;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.Map;
 
 /**
  * Created by abelb on 8/8/2017.
@@ -40,11 +43,18 @@ public abstract class FormBase extends BasePage {
     }
 
     /**
-     * Creates or Updates the Item.
+     * Creates or Updates the Item with only Required values.
      *
      * @param name String.
      * @return DetailBase.
      */
-    //Try to implement with Builder Pattern
     public abstract DetailBase newItem(String name);
+
+    /**
+     * Creates or Updates the Item with any values.
+     *
+     * @param formMapData Map.
+     * @return DetailBase.
+     */
+    public abstract DetailBase newItemFromMap(Map<ProductFormField, String> formMapData);
 }

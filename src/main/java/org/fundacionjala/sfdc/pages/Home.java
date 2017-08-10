@@ -83,10 +83,10 @@ public class Home extends BasePage {
      * @return Login pageObject.
      */
     public Login clickLinkLogOut() {
-//        clickProfileIcon();
-//        CommonActions.clickElement(logOutButton);
         DriverManager.getInstance().getWait().until(ExpectedConditions.urlContains("Product2"));
-        DriverManager.getInstance().getDriver().get("https://na59.salesforce.com/secur/logout.jsp");
+        clickProfileIcon();
+        CommonActions.clickElement(logOutButton);
+//        DriverManager.getInstance().getDriver().get("https://na59.salesforce.com/secur/logout.jsp");
         return new Login();
     }
 

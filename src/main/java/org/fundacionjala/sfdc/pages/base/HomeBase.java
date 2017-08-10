@@ -29,6 +29,10 @@ public abstract class HomeBase extends BasePage {
     @FindBy(css = "button[title='Delete']")
     protected WebElement confirmDeleteButton;
 
+    public WebElement getDisplayedItem() {
+        return displayedItem;
+    }
+
     /**
      * Get the DropDown List Link of the Object.
      *
@@ -95,6 +99,7 @@ public abstract class HomeBase extends BasePage {
      * Clicks the Delete Button.
      */
     public void clickDeleteButton() {
+
         CommonActions.clickElement(deleteButton);
     }
 
