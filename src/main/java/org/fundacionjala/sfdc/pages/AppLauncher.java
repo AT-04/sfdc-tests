@@ -20,8 +20,8 @@ public class AppLauncher extends BasePage {
     @FindBy(css = ".salesforceIdentityAppLauncherDesktopInternal .uiButton")
     private WebElement openAllAppsButton;
 
-    @FindBy(css = ".oneAppLauncherItemList .uiButton")
-//    @FindBy(css = "one-app-launcher-header")
+//    @FindBy(css = ".oneAppLauncherItemList .uiButton")
+    @FindBy(css = "one-app-launcher-header")
     private WebElement openAllItemsButton;
 
     /**

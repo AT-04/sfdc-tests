@@ -5,6 +5,7 @@ import cucumber.api.java.Before;
 import org.fundacionjala.sfdc.Env;
 import org.fundacionjala.sfdc.entities.ProductHelper;
 import org.fundacionjala.sfdc.pages.login.Login;
+import org.fundacionjala.sfdc.pages.products.ProductHome;
 
 /**
  * Created by abelb on 8/9/2017.
@@ -36,8 +37,9 @@ public class Hooks {
     @After(value = "@deleteProduct", order = 20)
     public void deleteCreatedItem() {
         //For delete inside Details
-//        helper.setProductHome((ProductHome) helper.getProductDetail().deleteItem());
-        helper.getProductHome().deleteElement("Automated");
+        helper.setProductHome((ProductHome) helper.getProductDetail().deleteItem());
+//        helper.getProductHome().deleteElement("Automated");
+//        helper.getProductDetail().deleteItem();
     }
 
     /**

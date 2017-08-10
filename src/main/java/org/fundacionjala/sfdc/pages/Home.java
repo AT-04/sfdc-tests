@@ -5,6 +5,7 @@ import org.fundacionjala.sfdc.driver.DriverManager;
 import org.fundacionjala.sfdc.pages.base.BasePage;
 import org.fundacionjala.sfdc.pages.login.Login;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -30,9 +31,6 @@ public class Home extends BasePage {
     @FindBy(css = "div.profile-card-toplinks > a.profile-link-label")
     private WebElement settingButton;
 
-    @FindBy(id = "error")
-    private WebElement errorMessageId;
-
     @FindBy(css = ".profile-link-label.profile-photo")
     private WebElement profileLinkLabel;
 
@@ -40,6 +38,7 @@ public class Home extends BasePage {
     private WebElement homeLink;
 
     @FindBy(className = "slds-icon-waffle")
+    @CacheLookup
     private WebElement appLauncherButton;
 
 
@@ -71,22 +70,14 @@ public class Home extends BasePage {
     }
 
     /**
-     * This method verify that error message is Displayed.
-     * @return True if the element is Displayed.
-     */
-    public boolean isErrorMessageDisplayed() {
-        return CommonActions.isElementDisplayed(errorMessageId);
-    }
-
-    /**
      * Method that makes click on logout link.
      * @return Login pageObject.
      */
     public Login clickLinkLogOut() {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.urlContains("Product2"));
-        clickProfileIcon();
-        CommonActions.clickElement(logOutButton);
-//        DriverManager.getInstance().getDriver().get("https://na59.salesforce.com/secur/logout.jsp");
+//        DriverManager.getInstance().getWait().until(ExpectedConditions.urlContains("Product2"));
+//        clickProfileIcon();
+//        CommonActions.clickElement(logOutButton);
+        DriverManager.getInstance().getDriver().get("https://na59.salesforce.com/secur/logout.jsp");
         return new Login();
     }
 

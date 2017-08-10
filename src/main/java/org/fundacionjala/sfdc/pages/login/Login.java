@@ -124,7 +124,7 @@ public class Login extends BasePage {
      * @return True if the user is logged.
      */
     public boolean isUserLogged() {
-        DriverManager.getInstance().getDriver().get(URL_HOME);
+//        DriverManager.getInstance().getDriver().get(URL_HOME);
         return getPageTitle().contains("Home");
     }
 
