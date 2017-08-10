@@ -3,6 +3,7 @@ package org.fundacionjala.sfdc.pages;
 import org.fundacionjala.sfdc.CommonActions;
 import org.fundacionjala.sfdc.pages.base.BasePage;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -18,6 +19,8 @@ public class Home extends BasePage {
     private WebElement viewProfileIcon;
 
     @FindBy(css = ".oneUserProfileCard .logout")
+//    @FindBy(css = ".profile-link-label.logout.uiOutputURL")
+//    @FindBy
     private WebElement logOutButton;
 
     @FindBy(css = "h1.profile-card-name > a.profile-link-label")
@@ -26,14 +29,15 @@ public class Home extends BasePage {
     @FindBy(css = "div.profile-card-toplinks > a.profile-link-label")
     private WebElement settingButton;
 
-    @FindBy(id = "error")
-    private WebElement errorMessageId;
-
     @FindBy(css = ".profile-link-label.profile-photo")
     private WebElement profileLinkLabel;
 
     @FindBy(css = "a[href='#/home']")
     private WebElement homeLink;
+
+    @FindBy(className = "slds-icon-waffle")
+    @CacheLookup
+    private WebElement appLauncherButton;
 
 
     /**
@@ -64,14 +68,6 @@ public class Home extends BasePage {
     }
 
     /**
-     * This method verify that error message is Displayed.
-     * @return True if the element is Displayed.
-     */
-    public boolean isErrorMessageDisplayed() {
-        return CommonActions.isElementDisplayed(errorMessageId);
-    }
-
-    /**
      * Method that makes click on logout link.
      */
     public void clickLogOutLink() {
@@ -96,5 +92,21 @@ public class Home extends BasePage {
     public Home clickHomeLink() {
         CommonActions.clickElement(homeLink);
         return new Home();
+    }
+
+    /**
+     * Clicks the App Launcher Button.
+     */
+    public void clickAppLauncherButton() {
+        CommonActions.clickElement(appLauncherButton);
+    }
+
+    /**
+     * Loads the App Launcher by clicking on its button.
+     * @return AppLauncher.
+     */
+    public AppLauncher clickAppLauncher() {
+        clickAppLauncherButton();
+        return new AppLauncher();
     }
 }

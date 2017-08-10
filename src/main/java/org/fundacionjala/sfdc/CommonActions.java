@@ -1,5 +1,7 @@
 package org.fundacionjala.sfdc;
 
+import org.fundacionjala.sfdc.driver.DriverManager;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -64,7 +66,13 @@ public final class CommonActions {
      * @return True if the element is Displayed.
      */
     public static boolean isElementDisplayed(WebElement webElement) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
-        return webElement.isDisplayed();
+        boolean isDisplayed;
+        try {
+            DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+            isDisplayed = webElement.isDisplayed();
+        } catch (WebDriverException e) {
+            isDisplayed = false;
+        }
+        return isDisplayed;
     }
 }

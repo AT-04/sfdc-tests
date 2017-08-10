@@ -1,7 +1,7 @@
 package org.fundacionjala.sfdc.pages.login;
 
 import org.fundacionjala.sfdc.CommonActions;
-import org.fundacionjala.sfdc.DriverManager;
+import org.fundacionjala.sfdc.driver.DriverManager;
 import org.fundacionjala.sfdc.pages.Home;
 import org.fundacionjala.sfdc.pages.Profile;
 import org.fundacionjala.sfdc.pages.base.BasePage;
@@ -124,7 +124,6 @@ public class Login extends BasePage {
      */
     public boolean isUserLogged() {
         return getCurrentUrl().contains(".lightning.force.com");
-
     }
 
 
