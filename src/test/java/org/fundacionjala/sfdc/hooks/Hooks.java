@@ -2,9 +2,9 @@ package org.fundacionjala.sfdc.hooks;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.fundacionjala.sfdc.Env;
 import org.fundacionjala.sfdc.entities.ProductHelper;
 import org.fundacionjala.sfdc.pages.login.Login;
-import org.fundacionjala.sfdc.pages.products.ProductHome;
 
 /**
  * Created by abelb on 8/9/2017.
@@ -12,6 +12,7 @@ import org.fundacionjala.sfdc.pages.products.ProductHome;
 public class Hooks {
 
     private ProductHelper helper;
+    private static final Env ENV = Env.getInstance();
 
     /**
      * Constructor with Dependency Injection.
@@ -26,9 +27,7 @@ public class Hooks {
      */
     @Before("@login")
     public void loginToSalesForce() {
-        final String username = "demouser2710@gmail.com";
-        final String password = "secret2710";
-        helper.setHomePage(Login.loginInitial(username, password));
+        helper.setHomePage(Login.loginInitial(ENV.getUsername(), ENV.getPassword()));
     }
 
     /**

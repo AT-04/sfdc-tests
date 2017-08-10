@@ -7,7 +7,6 @@ import org.fundacionjala.sfdc.entities.ProductHelper;
 import org.fundacionjala.sfdc.pages.products.ProductDetail;
 import org.fundacionjala.sfdc.pages.products.ProductForm;
 import org.fundacionjala.sfdc.pages.products.ProductFormField;
-import org.fundacionjala.sfdc.pages.products.ProductHome;
 
 import java.util.Map;
 
@@ -58,9 +57,8 @@ public class ProductCreateSteps {
      * @param productName String.
      */
     @Then("^On Products Home Page \"([^\"]*)\" should be displayed$")
-    public void onProductsHomePageShouldBeDisplayed(String productName) throws InterruptedException {
+    public void onProductsHomePageShouldBeDisplayed(String productName) {
         assertEquals(productName, helper.getProductDetail().getItemName(productName));
-        Thread.sleep(1000);
         helper.getHomePage().clickAppLauncher();
         helper.setProductHome(helper.getAppLauncher().clickProductsTextLink());
         assertTrue(helper.getProductHome().isDisplayedItem(productName));

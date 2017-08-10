@@ -29,6 +29,10 @@ public abstract class HomeBase extends BasePage {
     @FindBy(css = "button[title='Delete']")
     protected WebElement confirmDeleteButton;
 
+    /**
+     * Gets the Displayed Item.
+     * @return WebElement displayed.
+     */
     public WebElement getDisplayedItem() {
         return displayedItem;
     }

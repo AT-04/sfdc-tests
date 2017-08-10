@@ -36,6 +36,10 @@ public class ProductEditSteps {
         helper.setProductDetail((ProductDetail) helper.getProductForm().newItem(newName));
     }
 
+    /**
+     * In this Step the Current Product is Edited with required and optional information.
+     * @param formMapData Map ProductFormField, String.
+     */
     @When("^I Edit the Product$")
     public void iEditTheProduct(Map<ProductFormField, String> formMapData) {
         helper.setProductForm((ProductForm) helper.getProductDetail().clickEditButton());
