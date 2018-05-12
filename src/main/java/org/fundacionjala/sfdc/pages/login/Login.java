@@ -95,8 +95,7 @@ public class Login extends BasePage {
         Home homePage;
         try {
             DriverManager.getInstance().setUpdateWait(TIME_WAIT_DURATION);
-            homePage = new Home();
-            homePage = verifyCorrectUser(userName, password, homePage);
+            homePage = verifyCorrectUser(userName, password);
             homePage.clickHomeLink();
         } catch (WebDriverException e) {
             LOGGER.error("WebDriverException");
@@ -114,10 +113,10 @@ public class Login extends BasePage {
      *
      * @param userName User Name for Sales Force with other user.
      * @param password Password for Sales Force with other user.
-     * @param homePage pageObject.
      * @return Home page after login with correct session.
      */
-    private Home verifyCorrectUser(final String userName, final String password, final Home homePage) {
+    private Home verifyCorrectUser(final String userName, final String password) {
+        final Home homePage = new Home();
         Profile profile = homePage.clickProfileLinkLabel();
         if (!profile.isCorrectUserLogged(userName)) {
             homePage.clickLogOutLink();

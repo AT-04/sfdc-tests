@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.fundacionjala.sfdc.core.CommonActions;
 import org.fundacionjala.sfdc.core.driver.DriverManager;
 import org.fundacionjala.sfdc.pages.IStrategySteps;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
 import org.fundacionjala.sfdc.pages.base.FormBase;
 
 /**
@@ -240,15 +239,6 @@ public class OpportunityForm extends FormBase {
     public OpportunityForm setDescriptionTextArea(final String description) {
         CommonActions.setInputField(opportunityDescriptionInputField, description);
         return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public DetailBase setObject(final Map<OpportunityFormField, String> formMapData) {
-        formMapData.forEach((key, value) -> getStrategyMap(formMapData).get(key).performStep());
-        clickSaveButton();
-        return new OpportunityDetail();
     }
 
     /**
