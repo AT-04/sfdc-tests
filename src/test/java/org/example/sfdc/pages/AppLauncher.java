@@ -38,8 +38,15 @@ public class AppLauncher extends BasePage {
     @FindBy(xpath = "//one-app-launcher-modal/descendant::a[contains(@href, 'Campaign')]")
     private WebElement campaignTextLink;
 
-    @FindBy(xpath = "//one-app-launcher-modal/descendant::a[contains(@href, 'chatter')]")
+    @FindAll({
+            @FindBy(css = "#Chatter_Tab a"),
+
+            @FindBy(xpath = "//one-app-launcher-modal/descendant::a[contains(@href, 'chatter')]")
+    })
     private WebElement chatterTextLink;
+
+    @FindBy(css = "#window button")
+    private WebElement homeOptionLightningExperience;
 
     @FindBy(css = "a[title='Opportunities']")
     private WebElement opportunityButton;
@@ -76,6 +83,12 @@ public class AppLauncher extends BasePage {
         return new PostForm();
     }
 
+    public PostForm clickChatterMenuOption() {
+        if (SFDCEnvironment.isLightningExperience()) {
+            action.jsClick(homeOptionLightningExperience);
+        }
+        return clickChatterTextLink();
+    }
     /**
      * Clicks the Product Text Link.
      *

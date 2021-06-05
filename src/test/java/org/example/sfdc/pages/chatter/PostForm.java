@@ -5,9 +5,11 @@ import java.util.EnumMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.sfdc.pages.SFDCEnvironment;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -30,13 +32,26 @@ public class PostForm extends BasePage {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @FindBy(css = ".dummyControlsContainer .slds-button--neutral.uiButton")
+
+    @FindAll({
+            @FindBy(css = "#publishereditablearea"),
+
+            @FindBy(css = ".dummyControlsContainer .slds-button--neutral.uiButton")
+    })
     private WebElement sectionPostTextAreaField;
 
-    @FindBy(css = ".slds-rich-text-area__content")
+    @FindAll({
+            @FindBy(css = "#cke_1_contents iframe"),
+
+            @FindBy(css = ".slds-rich-text-area__content")
+    })
     private WebElement postTextAreaField;
 
-    @FindBy(css = ".cuf-publisherShareButton")
+    @FindAll({
+            @FindBy(css = "#publishersharebutton"),
+
+            @FindBy(css = ".cuf-publisherShareButton")
+    })
     private WebElement shareButton;
 
     @FindBy(css = "a[title='Edit']")
@@ -79,7 +94,11 @@ public class PostForm extends BasePage {
      */
     public PostForm setTextPost(final String postText) {
         clickOnPostTextAreaField();
-        action.setInputField(postTextAreaField, postText);
+        if (SFDCEnvironment.isLightningExperience()) {
+            action.setInputField(postTextAreaField, postText);
+        } else {
+            sectionPostTextAreaField.sendKeys(postText);
+        }
         return this;
     }
 
@@ -163,7 +182,13 @@ public class PostForm extends BasePage {
      */
     public String concatXpath(final String messagePost, final String action) {
         String selectorOfPost = String.format("//span[contains(text(),'%s')]", messagePost);
-        String clickAction = String.format("/ancestor::article/descendant::a[contains(@class,'%s')]", action);
+        String clickAction = "";
+
+        if (SFDCEnvironment.isLightningExperience()) {
+            clickAction = String.format("/ancestor::article/descendant::a[contains(@class,'%s')]", action);
+        } else {
+            clickAction = String.format("/ancestor::article/descendant-or-self::div/descendant::div[contains(@class, '%s')]", action);
+        }
         return selectorOfPost.concat(clickAction);
     }
 
