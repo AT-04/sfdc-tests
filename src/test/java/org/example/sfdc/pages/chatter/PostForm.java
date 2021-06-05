@@ -97,7 +97,6 @@ public class PostForm extends BasePage {
         if (SFDCEnvironment.isLightningExperience()) {
             action.setInputField(postTextAreaField, postText);
         } else {
-            //action.setInputField(sectionPostTextAreaField, postText);
             sectionPostTextAreaField.sendKeys(postText);
         }
         return this;
