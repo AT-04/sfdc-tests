@@ -10,6 +10,7 @@ import org.example.sfdc.pages.campaigns.CampaignHome;
 import org.example.sfdc.pages.chatter.PostForm;
 import org.example.sfdc.pages.opportunities.OpportunityHome;
 import org.example.sfdc.pages.products.ProductHome;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Class for the App Launcher.
@@ -19,7 +20,11 @@ public class AppLauncher extends BasePage {
     @FindBy(css = "div one-app-launcher-menu")
     private WebElement windowModal;
 
-    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Products']")
+    @FindAll({
+            @FindBy(xpath = "//*[@title='Products']"),
+
+            @FindBy(xpath = "//p[text()='Products']")
+    })
     private WebElement productsTextLink;
 
     @FindBy(xpath = "//one-app-launcher-menu/descendant::button")
@@ -62,6 +67,7 @@ public class AppLauncher extends BasePage {
      * @return ProductHome.
      */
     public ProductHome clickProductsTextLink() {
+        wait.until(ExpectedConditions.visibilityOf(productsTextLink));
         action.jsClick(productsTextLink);
         return new ProductHome();
     }

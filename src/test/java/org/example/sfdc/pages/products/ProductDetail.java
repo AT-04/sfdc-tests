@@ -1,6 +1,7 @@
 package org.example.sfdc.pages.products;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import org.example.sfdc.pages.base.DetailBase;
@@ -10,16 +11,34 @@ import org.example.sfdc.pages.base.DetailBase;
  */
 public class ProductDetail extends DetailBase {
 
-    @FindBy(xpath = "//span[text()='Product Name']/parent::div/following-sibling::div/child::span/child::span")
+    @FindAll({
+            @FindBy(xpath = "//*[text()='Product Name']//following-sibling::td//div[@id='Name_ileinner']"),
+
+            @FindBy(xpath = "//div[contains(@class,'windowViewMode-normal')]//*[text()='Product Name']/..//following-sibling::div//span[@class='uiOutputText']")
+    })
     private WebElement productNameText;
 
-    @FindBy(xpath = "//span[text()='Product Family']/parent::div/following-sibling::div")
+
+    @FindAll({
+            @FindBy(xpath = "//*[text()='Product Family']/following-sibling::td//div"),
+
+            @FindBy(xpath = "//div[contains(@class,'windowViewMode-normal')]//div[@data-component-id='force_detailPanel']//*[text()='Product Family']/..//following-sibling::div//span/span")
+    })
     private WebElement productFamilyText;
 
-    @FindBy(xpath = "//span[text()='Product Code']/parent::div/following-sibling::div")
+
+    @FindAll({
+            @FindBy(xpath = "//*[text()='Product Code']/following-sibling::td//div"),
+
+            @FindBy(xpath = "//div[contains(@class,'windowViewMode-normal')]//div[@data-component-id='force_detailPanel']//*[text()='Product Code']/..//following-sibling::div//span[@class='uiOutputText']")
+    })
     private WebElement productCodeText;
 
-    @FindBy(xpath = "//span[text()='Product Description']/parent::div/following-sibling::div")
+    @FindAll({
+            @FindBy(xpath = "//*[text()='Product Description']/following-sibling::td//div"),
+
+            @FindBy(xpath = "//div[contains(@class,'windowViewMode-normal')]//div[@data-component-id='force_detailPanel']//*[text()='Product Description']/..//following-sibling::div//span/span")
+    })
     private WebElement productDescriptionText;
 
     /**

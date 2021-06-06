@@ -40,7 +40,7 @@ public class ProductAssertionSteps {
     public void theProductShouldBeDisplayed() {
         ProductDetail productDetail = new ProductDetail();
         productDetail.waitObjectNameIs(context.getItemName());
-        productDetail.waitUntilSuccessMessage();
+
         assertion.assertTrue(productDetail.getProductNameText()
                 .equals(map.get(ProductFormField.PRODUCT_NAME)));
         assertion.assertTrue(productDetail.getProductCodeText()
@@ -66,9 +66,6 @@ public class ProductAssertionSteps {
         assertion.assertTrue(productHome.isProductFieldDisplayed(
                 map.get(ProductFormField.PRODUCT_NAME),
                 map.get(ProductFormField.PRODUCT_DESCRIPTION)));
-        assertion.assertTrue(productHome.isProductFieldDisplayed(
-                map.get(ProductFormField.PRODUCT_NAME),
-                map.get(ProductFormField.PRODUCT_FAMILY)));
     }
 
     /**

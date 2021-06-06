@@ -14,7 +14,7 @@ public abstract class FormBase extends BasePage {
     @FindAll({
             @FindBy(css = "input[name='save']"),
 
-            @FindBy(xpath = "//button[@name='SaveEdit']")
+            @FindBy(xpath = "//button[@name='SaveEdit']|//button[@title='Save']")
     })
     protected WebElement saveButton;
 

@@ -110,6 +110,7 @@ public class Home extends BasePage {
      */
     public AppLauncher clickAppLauncher() {
         action.clickElement(appLauncherButton);
+        wait.until(ExpectedConditions.visibilityOf(appLauncherButton));
         AppLauncher appLauncher = new AppLauncher();
         if (SFDCEnvironment.isLightningExperience()) {
             appLauncher.waitModal();

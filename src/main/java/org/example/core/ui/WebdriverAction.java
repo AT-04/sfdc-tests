@@ -113,7 +113,6 @@ public class WebdriverAction {
         try {
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             wait.withTimeout(Duration.ofSeconds(3));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Just For Wait']")));
         } catch (TimeoutException e) {
             LOGGER.error("Timeout exception triggered");
         } finally {

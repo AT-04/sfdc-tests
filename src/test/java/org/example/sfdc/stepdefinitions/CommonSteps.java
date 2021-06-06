@@ -28,7 +28,7 @@ public class CommonSteps {
         this.context = context;
     }
 
-    @ParameterType(".*")
+    @ParameterType("\"(.*)\"")
     public SObject sObject(final String sObject) {
         return SObject.valueOf(sObject.toUpperCase());
     }

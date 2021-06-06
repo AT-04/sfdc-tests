@@ -1,8 +1,14 @@
 package org.example.sfdc.pages.products;
 
+import org.example.sfdc.pages.Experience;
+import org.example.sfdc.pages.SFDCEnvironment;
+import org.example.sfdc.pages.TopMenuClassic;
+import org.example.sfdc.pages.TopMenuLightning;
 import org.openqa.selenium.By;
 
 import org.example.sfdc.pages.base.HomeBase;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Class containing Product Home Page.
@@ -15,7 +21,8 @@ public class ProductHome extends HomeBase {
     @Override
     public ProductForm clickNewButton() {
         action.waitFixedTime();
-        action.jsClickCssButton(newButton);
+        wait.until(ExpectedConditions.visibilityOf(newButton));
+        newButton.click();
         return new ProductForm();
     }
 
@@ -47,8 +54,16 @@ public class ProductHome extends HomeBase {
      * @return boolean.
      */
     public boolean isProductFieldDisplayed(final String productName, final String productField) {
-        String xpathSelector = String.format("//a[text()='%s']/ancestor::tr/descendant::span[text()='%s']",
-                productName, productField);
+        String xpathSelector;
+
+        if (SFDCEnvironment.getExperience().toString().equals("CLASSIC")) {
+            xpathSelector = String.format("//a[text()='%s']/ancestor::tr/descendant::td[text()='%s'] | //a[text()='%s']/ancestor::tr/descendant::td//a[text()='%s']"
+                    ,productName, productField,productName, productField);
+        } else {
+            xpathSelector = String.format("//a[text()='%s']/ancestor::tr/descendant::td//*[text()='%s']"
+                    ,productName, productField);
+        }
+
         return driver.findElement(By.xpath(xpathSelector)).isDisplayed();
     }
 }

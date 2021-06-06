@@ -1,6 +1,7 @@
 Feature: Create Product
 
-  @deleteProduct @SoftAssert
+#  @deleteProduct
+  @SoftAssert
   Scenario: Create a new Product
     Given I log in as default user
     And I go to "Product" Home Page
@@ -9,7 +10,7 @@ Feature: Create Product
       | PRODUCT_NAME        | Automation     |
       | PRODUCT_CODE        | 123            |
       | PRODUCT_DESCRIPTION | Just Something |
-      | PRODUCT_FAMILY      | None           |
+      | PRODUCT_FAMILY      | Accessories    |
       | ACTIVE              | true           |
     Then "Product \"${PRODUCT_NAME}\" was created." message should be displayed in "Product" Detail Page
     Then the Product should be displayed

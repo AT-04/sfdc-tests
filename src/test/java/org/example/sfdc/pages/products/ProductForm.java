@@ -3,31 +3,54 @@ package org.example.sfdc.pages.products;
 import java.util.EnumMap;
 import java.util.Map;
 
+import org.example.sfdc.pages.SFDCEnvironment;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import org.example.sfdc.pages.IStrategySteps;
 import org.example.sfdc.pages.base.FormBase;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Class containing Product Form Page.
  */
 public class ProductForm extends FormBase {
 
-    @FindBy(xpath = "//span[contains(text(), 'Product Name')]/parent::label/following-sibling::input")
+    @FindAll({
+            @FindBy(xpath = "//*[contains(text(), 'Product Name')]/ancestor::td/following-sibling::td//input"),
+
+            @FindBy(xpath = "//div[contains(@class,'forcePageBlock ')]//span[contains(text(), 'Product Name')]/ancestor::div[contains(@class,'uiInput')]//input")
+    })
     private WebElement productNameInputText;
 
-    @FindBy(xpath = "//span[contains(text(), 'Product Code')]/parent::label/following-sibling::input")
+    @FindAll({
+            @FindBy(xpath = "//*[contains(text(), 'Product Code')]/ancestor::td/following-sibling::td//input"),
+
+            @FindBy(xpath = "//div[contains(@class,'forcePageBlock ')]//span[contains(text(), 'Product Code')]/ancestor::div[contains(@class,'uiInput')]//input")
+    })
     private WebElement productCodeInputText;
 
-    @FindBy(xpath = "//span[contains(text(), 'Product Description')]/parent::label/following-sibling::textarea")
+    @FindAll({
+            @FindBy(xpath = "//*[contains(text(), 'Product Description')]/ancestor::td/following-sibling::td//textarea"),
+
+            @FindBy(xpath = "//div[contains(@class,'forcePageBlock ')]//span[contains(text(), 'Product Description')]/ancestor::div[contains(@class,'uiInput')]//textarea")
+    })
     private WebElement productDescriptionTextArea;
 
-    @FindBy(xpath = "//span[contains(text(), 'Active')]/parent::label/following-sibling::input")
+    @FindAll({
+            @FindBy(xpath = "//*[contains(text(), 'Active')]/ancestor::td/following-sibling::td//input"),
+
+            @FindBy(xpath = "//div[contains(@class,'forcePageBlock ')]//span[contains(text(), 'Active')]/ancestor::div[contains(@class,'uiInput')]//input")
+    })
     private WebElement activeCheckBox;
 
-    @FindBy(xpath = "//span[contains(text(),'Family')]/parent::span/following-sibling::div/descendant::a")
+    @FindAll({
+            @FindBy(xpath = "//*[contains(text(), 'Family')]/ancestor::td/following-sibling::td//select"),
+
+            @FindBy(xpath = "//div[contains(@class,'forcePageBlock ')]//span[contains(text(), 'Product Family')]/ancestor::div[contains(@class,'uiInput')]//a")
+    })
     private WebElement productFamilySelect;
 
     /**
@@ -81,9 +104,13 @@ public class ProductForm extends FormBase {
      * @param productFamily String.
      */
     private void setProductFamilySelect(final String productFamily) {
-        action.clickElement(productFamilySelect);
-        String cssSelector = String.format("a[title='%s']", productFamily);
-        driver.findElement(By.cssSelector(cssSelector)).click();
+        if (SFDCEnvironment.getExperience().toString().equals("CLASSIC")) {
+            Select productFamilyDropDown = new Select(productFamilySelect);
+            productFamilyDropDown.selectByVisibleText(productFamily.equals("None") ? "--" + productFamily + "--" : productFamily);
+        } else {
+            productFamilySelect.click();
+            driver.findElement(By.xpath("//a[@title='"+productFamily+"']")).click();
+        }
     }
 
     /**
