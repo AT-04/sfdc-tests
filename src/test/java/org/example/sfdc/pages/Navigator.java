@@ -1,8 +1,5 @@
 package org.example.sfdc.pages;
 
-import java.util.EnumMap;
-import java.util.function.Supplier;
-
 import org.example.core.ui.BasePage;
 import org.example.core.ui.driver.DriverFactory;
 import org.example.sfdc.pages.acccounts.AccountDetail;
@@ -21,6 +18,9 @@ import org.example.sfdc.pages.opportunities.OpportunityHome;
 import org.example.sfdc.pages.products.ProductDetail;
 import org.example.sfdc.pages.products.ProductForm;
 import org.example.sfdc.pages.products.ProductHome;
+
+import java.util.EnumMap;
+import java.util.function.Supplier;
 
 /**
  * Final class Navigator to access the different pages.
@@ -49,8 +49,10 @@ public final class Navigator {
      * @return ProductHome.
      */
     public static ProductHome goToProductsHome() {
-        if (!DriverFactory.getDriver().getCurrentUrl().contains("Product2/list")) {
-            clickAppLauncher().clickProductsTextLink();
+        if (Experience.LIGHTNING.equals(SFDCEnvironment.getExperience())) {
+            DriverFactory.getDriver().get("https://na161.lightning.force.com/lightning/o/Product2/list");
+        } else {
+            DriverFactory.getDriver().get("https://na161.salesforce.com/01t/o");
         }
         return new ProductHome();
     }

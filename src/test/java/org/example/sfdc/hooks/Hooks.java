@@ -34,7 +34,7 @@ public class Hooks {
      */
     @After(value = "@deleteProduct", order = 10)
     public void deleteCreatedItem() {
-        Navigator.goToProductsHome().deleteElement(context.getItemName());
+        Navigator.goToProductsHome().clickItemList(SObject.PRODUCT, context.getItemName()).deleteItem();
     }
 
     /**

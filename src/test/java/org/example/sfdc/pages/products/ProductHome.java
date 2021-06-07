@@ -15,7 +15,7 @@ public class ProductHome extends HomeBase {
     @Override
     public ProductForm clickNewButton() {
         action.waitFixedTime();
-        action.jsClickCssButton(newButton);
+        action.clickElement(newButton);
         return new ProductForm();
     }
 
