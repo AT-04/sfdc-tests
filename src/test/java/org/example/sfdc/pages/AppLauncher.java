@@ -18,7 +18,7 @@ public class AppLauncher extends BasePage {
     @FindBy(css = "div one-app-launcher-menu")
     private WebElement windowModal;
 
-    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Products']")
+    @FindBy(xpath = "//one-app-launcher-modal/descendant::a[contains(@href, 'Product')]")
     private WebElement productsTextLink;
 
     @FindBy(xpath = "//one-app-launcher-menu/descendant::button")

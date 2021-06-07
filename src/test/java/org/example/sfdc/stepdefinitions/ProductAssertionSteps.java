@@ -71,6 +71,14 @@ public class ProductAssertionSteps {
                 map.get(ProductFormField.PRODUCT_FAMILY)));
     }
 
+    @Then("^the Product Name should be displayed on Home Page$")
+    public void theProductNameShouldBeDisplayedOnHomePage() {
+        ProductHome productHome = new ProductHome();
+        productHome.waitUntilSpinnerIsHidden();
+        assertion.assertTrue(productHome
+                .isDisplayedItem(map.get(ProductFormField.PRODUCT_NAME)));
+    }
+
     /**
      * The Product shouldn't be displayed on Home Page After Delete.
      */

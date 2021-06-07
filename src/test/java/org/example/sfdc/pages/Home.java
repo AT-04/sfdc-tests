@@ -107,4 +107,20 @@ public class Home extends BasePage {
         action.clickElement(appLauncherButton);
         return new AppLauncher();
     }
+
+    public Experience getCurrentExperience() {
+        return driver.getCurrentUrl().contains(Experience.LIGHTNING.toString().toLowerCase())
+                ? Experience.LIGHTNING : Experience.CLASSIC;
+    }
+
+
+    public void setUserExperience(final Experience userExperience) {
+        if (!userExperience.equals(getCurrentExperience())) {
+            if (Experience.LIGHTNING.equals(userExperience)) {
+                new TopMenuClassic().switchExperience();
+            } else {
+                new TopMenuLightning().switchExperience();
+            }
+        }
+    }
 }

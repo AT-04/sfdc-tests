@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import org.example.sfdc.pages.IStrategySteps;
@@ -15,7 +16,14 @@ import org.example.sfdc.pages.base.FormBase;
  */
 public class ProductForm extends FormBase {
 
-    @FindBy(xpath = "//span[contains(text(), 'Product Name')]/parent::label/following-sibling::input")
+    @FindBy(css = "*[title='Save']")
+    protected WebElement saveButton;
+
+    @FindAll({
+            @FindBy(css = "#Name"),
+
+            @FindBy(xpath = "//span[contains(text(), 'Product Name')]/parent::label/following-sibling::input")
+    })
     private WebElement productNameInputText;
 
     @FindBy(xpath = "//span[contains(text(), 'Product Code')]/parent::label/following-sibling::input")
@@ -37,6 +45,13 @@ public class ProductForm extends FormBase {
         setProductNameInputText(name);
         clickSaveButton();
         return new ProductDetail();
+    }
+
+    /**
+     * Clicks the Save Button of the Form.
+     */
+    public void clickSaveButton() {
+        action.clickElement(saveButton);
     }
 
     /**

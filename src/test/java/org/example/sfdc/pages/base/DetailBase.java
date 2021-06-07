@@ -1,5 +1,6 @@
 package org.example.sfdc.pages.base;
 
+import org.example.sfdc.pages.SFDCEnvironment;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -20,8 +21,10 @@ public abstract class DetailBase extends BasePage {
     protected WebElement editButton;
 
     @FindAll({
-            @FindBy(xpath = "//div[contains(@class, 'oneContent active')]//a[@title='Delete']"),
-            @FindBy(xpath = "//div[contains(@class, 'oneContent active')]//button[@name='Delete']")
+            @FindBy(css = "input[name*='del']"),
+
+            @FindBy(xpath = "//div[contains(@class, 'oneContent active')]//a[@title='Delete']"
+                    + "|//div[contains(@class, 'oneContent active')]//button[@name='Delete']")
     })
     protected WebElement deleteButton;
 
@@ -67,7 +70,11 @@ public abstract class DetailBase extends BasePage {
      * Click the Confirm Delete Button from the current Item.
      */
     public void clickConfirmDeleteButton() {
-        action.clickElement(confirmDeleteButton);
+        if (SFDCEnvironment.isLightningExperience()) {
+            action.clickElement(confirmDeleteButton);
+        } else {
+            driver.switchTo().alert().accept();
+        }
     }
 
     /**
