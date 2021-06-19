@@ -37,7 +37,8 @@ public class AccountsAssertionSteps {
     public void theAccountShouldBeDisplayed() {
         AccountDetail accountDetail = new AccountDetail();
         accountDetail.clickDetailButton();
-        assertion.assertEquals(accountDetail.getAccountNameText(), map.get(AccountFormField.ACCOUNT_NAME));
+        assertion.assertTrue(accountDetail.getAccountNameText().contains(map.get(AccountFormField.ACCOUNT_NAME)),
+                String.format("%s account name doesn't match.", map.get(AccountFormField.ACCOUNT_NAME)));
         assertion.assertEquals(accountDetail.getWebsiteText(), map.get(AccountFormField.ACCOUNT_WEBSITE));
         assertion.assertEquals(accountDetail.getDescriptionText(), map.get(AccountFormField.ACCOUNT_DESCRIPTION));
         assertion.assertEquals(accountDetail.getPhoneText(), map.get(AccountFormField.ACCOUNT_PHONE));

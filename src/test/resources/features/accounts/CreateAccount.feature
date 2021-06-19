@@ -7,7 +7,7 @@ Feature: Create Account
     And I click on New Account
     When I fill the Account form with:
       | ACCOUNT_NAME             | Automation                 |
-      | ACCOUNT_WEBSITE          | www.somepage.com           |
+      | ACCOUNT_WEBSITE          | http://www.somepage.com    |
       | ACCOUNT_DESCRIPTION      | This is a Description test |
       | ACCOUNT_PHONE            | 59179732801                |
       | ACCOUNT_EMPLOYEES        | 25                         |
