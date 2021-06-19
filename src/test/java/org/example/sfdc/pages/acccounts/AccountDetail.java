@@ -180,4 +180,5 @@ public class AccountDetail extends DetailBase {
     public void clickEditBillingAddress() {
         action.clickElement(editBillingAddress);
     }
+
 }
